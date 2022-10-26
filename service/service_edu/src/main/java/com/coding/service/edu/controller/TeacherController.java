@@ -5,6 +5,7 @@ package com.coding.service.edu.controller;
  * @create 2022-10-26 下午 3:52
  */
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.coding.service.base.result.R;
 import com.coding.service.edu.entity.Teacher;
 import com.coding.service.edu.service.TeacherService;
@@ -50,5 +51,22 @@ public class TeacherController {
         }
         return R.error().message("数据不存在");
     }
+
+    /**
+     * 分页查询
+     */
+    @ApiOperation(value = "讲师分页列表")
+    @GetMapping("list/{page}/{limit}")
+    public R listPage(@ApiParam(value = "当前页码",required = true) @PathVariable Long page,
+                      @ApiParam(value = "每页记录数",required = true) @PathVariable Long limit){
+        Page<Teacher> pageParam = new Page<>(page,limit);
+        teacherService.page(pageParam);
+        //获取讲师列表
+        List<Teacher> records = pageParam.getRecords();
+        //获取讲师总数
+        long total = pageParam.getTotal();
+        return R.ok().data("total",total).data("rows",records);
+    }
+
 
 }
