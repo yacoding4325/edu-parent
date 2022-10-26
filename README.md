@@ -342,3 +342,4 @@ A站、爱奇艺、腾讯视频。。。。。
 ![讲师模块管理以及api接口编写](https://user-images.githubusercontent.com/82166879/197990110-0c2ac50f-7161-4786-b51b-a070d76a5f2a.png)
 
 
+![控制台展现 业务界面](https://user-images.githubusercontent.com/82166879/197992764-9a5625d8-acb6-4118-b316-33f34e422a12.png)
