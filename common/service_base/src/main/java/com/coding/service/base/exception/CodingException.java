@@ -2,7 +2,6 @@ package com.coding.service.base.exception;
 
 import com.coding.service.base.result.ResultCodeEnum;
 import lombok.Data;
-import org.springframework.context.annotation.Bean;
 
 /**
  * 自定义异常
