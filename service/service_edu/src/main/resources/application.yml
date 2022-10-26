@@ -1,0 +1,27 @@
+server:
+  port: 9110
+
+spring:
+  profiles:
+    #环境设置
+    active: dev
+  application:
+    #服务名
+    name: service-edu
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1.3306/coding_edu?serverTimezone=Asia/Shanghai
+    username: root
+    password: yxym
+
+  #相应 json 的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#mybatis 日志设置
+mybatis-plus:
+  configuration:
+    #日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:/mapper/*.xml
