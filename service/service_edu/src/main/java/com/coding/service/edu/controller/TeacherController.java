@@ -6,17 +6,16 @@ package com.coding.service.edu.controller;
  */
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.coding.service.base.exception.CodingException;
 import com.coding.service.base.result.R;
+import com.coding.service.base.result.ResultCodeEnum;
 import com.coding.service.edu.entity.Teacher;
 import com.coding.service.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,6 +66,49 @@ public class TeacherController {
         long total = pageParam.getTotal();
         return R.ok().data("total",total).data("rows",records);
     }
+
+    /**
+     * 新增讲师
+     *
+     */
+    @ApiOperation(value = "新增讲师")
+    @PostMapping("save")
+    public R update(@ApiParam("讲师对象")@RequestBody Teacher teacher) {
+        boolean result = teacherService.updateById(teacher);
+        if(result){
+            return R.ok().message("更新成功");
+        }else {
+            return R.error().message("数据不存在或更新失败");
+        }
+    }
+
+    /**
+     * 根据id删除讲师   假删除
+     */
+    @ApiOperation(value = "根据ID删除讲师",notes = "逻辑删除")
+    @DeleteMapping("remove/{id}")
+    public R removeById(@ApiParam(value = "讲师ID",required = true)@PathVariable String id){
+        boolean result = teacherService.removeById(id);
+        if(result){
+            return R.ok().message("删除成功");
+        }else {
+            return R.error().message("删除失败");
+        }
+    }
+
+    //异常测试
+    @ApiOperation(value = "异常测试")
+    @GetMapping("exceptionTest")
+    public R exceptionTest() {
+        try {
+            int a = 10/0;
+        } catch (Exception e) {
+            throw new CodingException(ResultCodeEnum.DIVIDE_ZERO);
+        }
+        return  R.ok();
+    }
+
+
 
 
 }
