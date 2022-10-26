@@ -338,3 +338,7 @@ B站
 西瓜视频
 
 A站、爱奇艺、腾讯视频。。。。。
+
+![讲师模块管理以及api接口编写](https://user-images.githubusercontent.com/82166879/197990110-0c2ac50f-7161-4786-b51b-a070d76a5f2a.png)
+
+
