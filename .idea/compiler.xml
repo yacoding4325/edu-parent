@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service_edu" />
         <module name="common_util" />
+        <module name="service_oss" />
         <module name="service_base" />
       </profile>
     </annotationProcessing>
@@ -21,6 +22,7 @@
       <module name="service" options="-parameters" />
       <module name="service_base" options="-parameters" />
       <module name="service_edu" options="-parameters" />
+      <module name="service_oss" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package com.coding.service.edu.controller;
+package com.coding.service.edu.controller.admin;
 
 /**
  * @Author yaCoding
