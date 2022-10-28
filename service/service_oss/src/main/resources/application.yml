@@ -1,0 +1,18 @@
+server:
+  port: 9120
+
+spring:
+  profiles:
+    # 环境设置
+    active: dev
+
+  application:
+    # 服务名
+    name: service_oss
+
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    KeyId: LTAIbUa1VjmLtLj9
+    keySecret: 0DwE37E2aVQ17K0xrWJtJMmjM54ZeM
+    bucketName: javaclimb-file
