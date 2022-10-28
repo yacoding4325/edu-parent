@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * 分页功能
  */
 @Configuration
-@MapperScan("com.coding.service.*.mapper")
+@MapperScan("com.javaclimb.service.*.mapper")
 public class MyBatisPlusConfig {
     /**
      * 分页插件

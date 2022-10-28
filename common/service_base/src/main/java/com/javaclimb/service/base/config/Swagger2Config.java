@@ -23,21 +23,22 @@ public class Swagger2Config {
     @Bean
     public Docket webApiConfig() {
         return new Docket(DocumentationType.SWAGGER_2)
-                //分组，名
+                // 分组名
                 .groupName("WebApi")
                 .apiInfo(apiInfo())
                 .select()
-                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+//                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("coding 的GitHub主页")
-                .description("项目集合")
+                .title("Java攀登网API文档")
+                .description("描述服务端的 api 接口定义")
                 .version("1.0")
-                .contact(new Contact("coding", "https://github.com/yacoding4325/edu-parent", "xxxx.@xxx.com"))
+                .contact(new Contact("javaclimb", "http://www.javaclimb.com", "xxxx.@xxx.com"))
                 .build();
     }
+
 }
