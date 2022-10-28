@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.service.edu.mapper.CourseMapper">
+
+    <sql id="tables">
+        edu_course c
+        LEFT JOIN edu_subject s1 ON c.subject_parent_id = s1.id
+        LEFT JOIN edu_subject s2 ON c.subject_id = s2.id
+        LEFT JOIN edu_teacher t ON c.teacher_id = t.id
+    </sql>
+
+    <select id="selectCoursePublishVoById" resultType="com.javaclimb.service.edu.entity.vo.CoursePublishVo">
+        select c.title,c.cover,c.lesson_num as lessonNum,c.price,s1.title as subjectLevelOne,s2.title as subjectLevelTwo,t.name as teacherName
+        from
+        <include refid="tables"/>
+        where c.id=#{id}
+    </select>
+
+    <select id="selectPageByCourseQueryVo" resultType="com.javaclimb.service.edu.entity.vo.CourseVo">
+        select c.id,
+        c.title,c.cover,c.lesson_num as lessonNum,c.price,s1.title as subjectParentTitle,s2.title as subjectTitle,t.name as teacherName,c.buy_count as buyCount,c.view_count as viewCount,c.`status`,c.gmt_create as gmtCreate,c.gmt_modified as gmtModified
+        from
+        <include refid="tables"/>
+        ${ew.customSqlSegment}
+    </select>
+
+</mapper>

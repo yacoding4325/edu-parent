@@ -1,17 +1,16 @@
 package com.javaclimb.service.edu.mapper;
 
-/**
- * @Author yaCoding
- * @create 2022-10-26 下午 3:51
- */
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.javaclimb.service.edu.entity.Teacher;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * * <p>
- *  * 讲师 Mapper 接口
- *  * </p>
+ * <p>
+ * 讲师 Mapper 接口
+ * </p>
+ *
+ * @author javaclimb
+ * @since 2021-10-28
  */
 public interface TeacherMapper extends BaseMapper<Teacher> {
+
 }

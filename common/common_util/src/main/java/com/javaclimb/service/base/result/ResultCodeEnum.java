@@ -54,7 +54,9 @@ public enum ResultCodeEnum {
     LOGIN_ACL(false, 28005, "没有权限"),
     SMS_SEND_ERROR(false, 28006, "短信发送失败"),
     SMS_SEND_ERROR_BUSINESS_LIMIT_CONTROL(false, 28007, "短信发送过于频繁"),
-    DIVIDE_ZERO(false,29001,"除零错误");
+    DIVIDE_ZERO(false,29001,"除零错误"),
+    HAS_CHILDREN(false,29002,"该分章节下存在视频课程，请先删除视频课程"),
+    NO_DATA(false,29003,"数据不存在");
 
     private final Boolean success;
 

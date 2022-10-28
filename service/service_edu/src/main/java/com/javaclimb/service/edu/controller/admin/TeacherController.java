@@ -1,9 +1,5 @@
 package com.javaclimb.service.edu.controller.admin;
 
-/**
- * @Author yaCoding
- * @create 2022-10-26 下午 3:52
- */
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,7 +7,7 @@ import com.javaclimb.service.base.exception.JavaclimbException;
 import com.javaclimb.service.base.result.R;
 import com.javaclimb.service.base.result.ResultCodeEnum;
 import com.javaclimb.service.edu.entity.Teacher;
-import com.javaclimb.service.edu.entity.TeacherQueryVo;
+import com.javaclimb.service.edu.entity.vo.TeacherQueryVo;
 import com.javaclimb.service.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,9 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- *  * <p>
- *  * 讲师 前端控制器
- *  * </p>
+ * <p>
+ * 讲师 前端控制器
+ * </p>
+ *
+ * @author javaclimb
+ * @since 2021-10-28
  */
 @Api(description = "讲师管理")
 @RestController
@@ -137,5 +136,18 @@ public class TeacherController {
         return R.error().message("删除失败");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

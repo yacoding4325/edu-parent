@@ -1,25 +1,21 @@
 package com.javaclimb.service.edu.service.impl;
 
-/**
- * @Author yaCoding
- * @create 2022-10-26 下午 3:55
- */
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaclimb.service.edu.entity.Teacher;
-import com.javaclimb.service.edu.entity.TeacherQueryVo;
+import com.javaclimb.service.edu.entity.vo.TeacherQueryVo;
 import com.javaclimb.service.edu.mapper.TeacherMapper;
 import com.javaclimb.service.edu.service.TeacherService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
- * * <p>
- *  * 讲师 服务实现类
- *  * </p>
+ * <p>
+ * 讲师 服务实现类
+ * </p>
+
  */
 @Service
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> implements TeacherService {

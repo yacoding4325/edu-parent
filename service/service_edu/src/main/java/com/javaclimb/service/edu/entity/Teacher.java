@@ -19,6 +19,9 @@ import lombok.EqualsAndHashCode;
  * <p>
  * 讲师
  * </p>
+ *
+ * @author javaclimb
+ * @since 2021-10-28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -41,29 +44,29 @@ public class Teacher implements Serializable {
     @ApiModelProperty(value = "讲师资历,一句话说明讲师")
     private String career;
 
-    @ApiModelProperty(value = "头衔 1高级讲师 2首席讲师")
+    @ApiModelProperty(value = "头衔 1高级讲师 2首席讲师",example = "1")
     private Integer level;
 
     @ApiModelProperty(value = "讲师头像")
     private String avatar;
 
-    @ApiModelProperty(value = "排序")
+    @ApiModelProperty(value = "排序",example = "1")
     private Integer sort;
 
     @ApiModelProperty(value = "入驻时间")
-    @JsonFormat(timezone = "UTC", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "UTC",pattern = "yyyy-MM-dd")
     private Date joinDate;
 
-    @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除",example = "1")
     @TableLogic
     private Integer isDeleted;
 
     @ApiModelProperty(value = "创建时间")
-      @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
-      @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
 

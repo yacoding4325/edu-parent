@@ -161,7 +161,7 @@
 <!--                <artifactId>aliyun-java-sdk-vod</artifactId>-->
 <!--                <version>2.16.10</version>-->
 <!--            </dependency>-->
-<!--            -->
+
 <!--            <dependency>-->
 <!--                <groupId>com.aliyun</groupId>-->
 <!--                <artifactId>aliyun-sdk-vod-upload</artifactId>-->
@@ -201,11 +201,11 @@
 <!--                <version>${canal.client.version}</version>-->
 <!--            </dependency>-->
 
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>easyexcel</artifactId>-->
-<!--                <version>${alibaba.easyexcel.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${alibaba.easyexcel.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.xmlbeans</groupId>

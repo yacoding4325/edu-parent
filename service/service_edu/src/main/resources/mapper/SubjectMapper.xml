@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.service.edu.mapper.SubjectMapper">
+    <resultMap id="nestedSubject" type="com.javaclimb.service.edu.entity.vo.SubjectVo">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="sort" column="sort"/>
+        <collection property="children" column="id" select="selectNestedListByParentId"
+                    ofType="com.javaclimb.service.edu.entity.vo.SubjectVo"/>
+    </resultMap>
+
+    <select id="selectNestedListByParentId" resultMap="nestedSubject">
+        select id,title,sort from edu_subject where parent_id = #{parentId}
+    </select>
+</mapper>
