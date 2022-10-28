@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @create 2022-10-26 下午 3:44
  */
 @SpringBootApplication
-@ComponentScan({"com.coding"})
+@ComponentScan({"com.javaclimb"})
 public class ServiceEduApplication {
 
     public static void main(String[] args) {

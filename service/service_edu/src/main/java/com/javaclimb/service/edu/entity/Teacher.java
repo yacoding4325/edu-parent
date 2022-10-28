@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -49,6 +51,7 @@ public class Teacher implements Serializable {
     private Integer sort;
 
     @ApiModelProperty(value = "入驻时间")
+    @JsonFormat(timezone = "UTC", pattern = "yyyy-MM-dd")
     private Date joinDate;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
