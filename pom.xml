@@ -155,18 +155,18 @@
                 <version>${aliyun-java-sdk-core.version}</version>
             </dependency>
 
-<!--            &lt;!&ndash; https://mvnrepository.com/artifact/com.aliyun/aliyun-java-sdk-vod &ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.aliyun</groupId>-->
-<!--                <artifactId>aliyun-java-sdk-vod</artifactId>-->
-<!--                <version>2.16.10</version>-->
-<!--            </dependency>-->
+            <!-- https://mvnrepository.com/artifact/com.aliyun/aliyun-java-sdk-vod -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-vod</artifactId>
+                <version>2.15.11</version>
+            </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>com.aliyun</groupId>-->
-<!--                <artifactId>aliyun-sdk-vod-upload</artifactId>-->
-<!--                <version>1.4.14</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-sdk-vod-upload</artifactId>
+                <version>1.4.14</version>
+            </dependency>
 
 
 

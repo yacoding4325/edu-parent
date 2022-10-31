@@ -1,0 +1,24 @@
+server:
+  port: 9130
+spring:
+  profiles:
+    # 环境设置
+    active: dev
+
+  application:
+    # 服务名
+    name: service-vod
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+  servlet:
+    multipart:
+      max-file-size: 1024MB   #最大上传单个文件大小 ，默认1MB，设置为1GB
+      max-request-size: 10240MB #最大总上传文件大小 ，默认10MB，设置为10GB
+
+aliyun:
+  vod:
+    KeyId: LTAIbUa1VjmLtLj9
+    keySecret: 0DwE37E2aVQ17K0xrWJtJMmjM54ZeM
