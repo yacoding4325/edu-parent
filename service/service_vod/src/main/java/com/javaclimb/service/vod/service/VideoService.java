@@ -26,10 +26,10 @@ public interface VideoService {
     /**
      * 根据视频videoId删除云端视频
      */
-    void removeVideo (String videoId) throws ClientException;
+    void removeVideo (String videoId) throws ClientException, com.aliyuncs.exceptions.ClientException;
 
     /**
      * 批量删除云端视频
      */
-    void removeVideoList(List<String> videoIdList) throws ClientException;
+    void removeVideoList(List<String> videoIdList) throws ClientException, com.aliyuncs.exceptions.ClientException;
 }

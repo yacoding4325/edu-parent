@@ -1,10 +1,10 @@
 package com.javaclimb.service.vod.service.impl;
 
+import com.aliyun.oss.ClientException;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.aliyuncs.DefaultAcsClient;
-import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
 import com.javaclimb.service.base.result.ResultCodeEnum;
 import com.javaclimb.service.vod.service.VideoService;
@@ -55,7 +55,7 @@ public class VideoServiceImpl implements VideoService {
      * @param videoId
      */
     @Override
-    public void removeVideo(String videoId) throws ClientException {
+    public void removeVideo(String videoId) throws ClientException, com.aliyuncs.exceptions.ClientException {
         DefaultAcsClient client = AliyunVodSdkUtils.initVodClient(vodProperties.getKeyId(), vodProperties.getKeySecret());
         DeleteVideoRequest request = new DeleteVideoRequest();
         //支持传入多个视频ID，多个用逗号分隔
@@ -63,13 +63,14 @@ public class VideoServiceImpl implements VideoService {
         client.getAcsResponse(request);
     }
 
+
     /**
      * 批量删除云端视频
      *
      * @param videoIdList
      */
     @Override
-    public void removeVideoList(List<String> videoIdList) throws ClientException {
+    public void removeVideoList(List<String> videoIdList) throws ClientException, com.aliyuncs.exceptions.ClientException {
         DefaultAcsClient client = AliyunVodSdkUtils.initVodClient(vodProperties.getKeyId(), vodProperties.getKeySecret());
         String str = StringUtils.join(videoIdList.toArray(),",");
         DeleteVideoRequest request = new DeleteVideoRequest();
@@ -77,4 +78,5 @@ public class VideoServiceImpl implements VideoService {
         request.setVideoIds(str);
         client.getAcsResponse(request);
     }
+
 }

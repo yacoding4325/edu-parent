@@ -52,13 +52,13 @@ public class VideoAdminController {
 
     @ApiOperation("删除云端视频")
     @DeleteMapping("remove/{vodId}")
-    public R removeVideo (@ApiParam (value = "阿里云视频id",readOnly = true) @PathVariable String vodId) {
+    public R removeVideo(@ApiParam(value = "阿里云视频id",required = true)@PathVariable String vodId){
         try {
             videoService.removeVideo(vodId);
             return R.ok().message("视频删除成功");
-        } catch (ClientException e) {
+        } catch (ClientException | com.aliyuncs.exceptions.ClientException e) {
             log.error(ExceptionUtils.getMessage(e));
-            throw new JavaclimbException(ResultCodeEnum.VIDEO_UPLOAD_ALIYUN_ERROR);
+            throw new JavaclimbException(ResultCodeEnum.VIDEO_DELETE_ALIYUN_ERROR);
         }
     }
 
@@ -68,10 +68,9 @@ public class VideoAdminController {
         try {
             videoService.removeVideoList(videoIdList);
             return R.ok().message("视频列表删除成功");
-        } catch (ClientException e) {
+        } catch (ClientException | com.aliyuncs.exceptions.ClientException e) {
             log.error(ExceptionUtils.getMessage(e));
             throw new JavaclimbException(ResultCodeEnum.VIDEO_DELETE_ALIYUN_ERROR);
         }
     }
-
 }
