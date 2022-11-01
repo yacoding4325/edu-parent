@@ -10,6 +10,11 @@ spring:
     # 服务名
     name: service_oss
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.17:8848
+
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
