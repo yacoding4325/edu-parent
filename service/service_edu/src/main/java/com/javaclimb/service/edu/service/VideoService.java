@@ -36,4 +36,9 @@ public interface VideoService extends IService<Video> {
      * 根据主键id删除课程视频
      */
     boolean removeVideoById(String id);
+
+    /**
+     * 根据课程主键删除 所有它下面的云端视频和课时
+     */
+    boolean removeByCourseId(String courseId);
 }

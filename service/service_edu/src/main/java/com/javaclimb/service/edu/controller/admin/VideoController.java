@@ -54,12 +54,3 @@ public class VideoController {
         return R.error().message("删除失败");
     }
 }
-
-
-
-
-
-
-
-
-
