@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="coding_edu@localhost" uuid="24cc4344-b01e-4ff9-8a0e-a86b3bfaaa10">
+    <data-source source="LOCAL" name="javaclimb_edu@localhost" uuid="3bbd55e0-e89f-4090-916e-d0c44f4f660b">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/coding_edu</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/javaclimb_edu</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
