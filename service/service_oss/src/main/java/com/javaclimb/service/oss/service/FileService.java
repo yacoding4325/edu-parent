@@ -20,4 +20,10 @@ public interface FileService {
      */
 
     String upload(InputStream inputStream,String module,String orginalFileName);
+
+    /**
+     * 阿里云Oss文件删除
+     @param url 文件在阿里云的地址
+     */
+    void removeFile(String url);
 }

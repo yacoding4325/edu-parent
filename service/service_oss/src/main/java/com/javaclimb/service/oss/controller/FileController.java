@@ -49,4 +49,11 @@ public class FileController {
             throw new JavaclimbException(ResultCodeEnum.FILE_UPLOAD_ERROR);
         }
     }
+
+    @ApiOperation("删除文件")
+    @DeleteMapping("remove")
+    public R removeFile(@ApiParam(value="要删除的文件路径",required = true) @RequestBody String url){
+        fileService.removeFile(url);
+        return R.ok().message("文件删除成功");
+    }
 }

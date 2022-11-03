@@ -55,4 +55,26 @@ public class FileServiceImpl implements FileService {
         //https://javaclimb-file.oss-cn-beijing.aliyuncs.com/avatar/01.jpeg
         return "https://"+bucketName+"."+endpoint+"/"+objectName;
     }
+
+    /**
+     * 阿里云Oss文件删除
+     * @param url 文件在阿里云的地址
+     */
+    @Override
+    public void removeFile(String url) {
+        // yourEndpoint填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
+        String endpoint = ossProperties.getEndpoint();
+        //阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
+        String accessKeyId = ossProperties.getKeyId();
+        String accessKeySecret = ossProperties.getKeySecret();
+        String bucketName = ossProperties.getBucketName();
+
+        //创建OSSClient实例。
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        String host = "https://"+bucketName+"."+endpoint+"/";
+        String objectName = url.substring(host.length());
+        ossClient.deleteObject(bucketName,objectName);
+        // 关闭OSSClient。
+        ossClient.shutdown();
+    }
 }
