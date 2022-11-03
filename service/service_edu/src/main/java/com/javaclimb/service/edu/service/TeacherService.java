@@ -6,6 +6,8 @@ import com.javaclimb.service.edu.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaclimb.service.edu.entity.vo.TeacherQueryVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 讲师 服务类
@@ -20,4 +22,11 @@ public interface TeacherService extends IService<Teacher> {
      * @param teacherQueryVo  查询条件
      */
     IPage<Teacher> selectPage(Page<Teacher> pageParam, TeacherQueryVo teacherQueryVo);
+
+    /**
+     * 获取推荐讲师
+     * @return
+     */
+    List<Teacher> selectHotTeacher();
+
 }

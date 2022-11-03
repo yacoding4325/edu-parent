@@ -8,6 +8,8 @@ import com.javaclimb.service.edu.entity.vo.CoursePublishVo;
 import com.javaclimb.service.edu.entity.vo.CourseQueryVo;
 import com.javaclimb.service.edu.entity.vo.CourseVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务类
@@ -55,4 +57,9 @@ public interface CourseService extends IService<Course> {
      * 根据id删除课程
      */
     boolean removeCourseById(String id);
+
+    /**
+     * 获取热门课程
+     */
+    List<Course> selectHotCourse();
 }

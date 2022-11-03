@@ -9,7 +9,10 @@ import com.javaclimb.service.edu.mapper.TeacherMapper;
 import com.javaclimb.service.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -58,5 +61,18 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         }
         //现在queryWrapper有很多条件
         return baseMapper.selectPage(pageParam,queryWrapper);
+    }
+
+    /**
+     * 获取推荐讲师
+     * @return
+     */
+    @Cacheable(value = "index",key = "selectHotTeacher")
+    @Override
+    public List<Teacher> selectHotTeacher() {
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("sort");
+        queryWrapper.last("limit 4");
+        return baseMapper.selectList(queryWrapper);
     }
 }

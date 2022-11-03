@@ -20,6 +20,7 @@ import com.javaclimb.service.edu.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -194,6 +195,18 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         courseDescriptionMapper.deleteById(id);
         //最后删除课程
         return this.removeById(id);
+    }
+
+    /**
+     * 获取热门课程
+     */
+    @Cacheable(value = "index",key = "'selectHotCourse'")
+    @Override
+    public List<Course> selectHotCourse() {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("view_count");
+        queryWrapper.last("limit 8");
+        return baseMapper.selectList(queryWrapper);
     }
 }
 
