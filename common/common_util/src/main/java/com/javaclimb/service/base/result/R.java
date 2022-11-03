@@ -43,7 +43,7 @@ public class R {
         return r;
     }
 
-    public static R error() {
+    public static R  error() {
         R r = new R();
         r.setSuccess(ResultCodeEnum.UNKNOWN_REASON.getSuccess());
         r.setCode(ResultCodeEnum.UNKNOWN_REASON.getCode());

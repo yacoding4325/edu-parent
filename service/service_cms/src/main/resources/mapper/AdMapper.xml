@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.service.cms.mapper.AdMapper">
+    <select id="selectPageByQueryWrapper" resultType="com.javaclimb.service.cms.entity.vo.AdVo">
+        select a.id,a.title,a.sort,t.title as type
+        from cms_ad a
+        left join cms_ad_type t on a.type_id = t.id
+        ${ew.customSqlSegment}
+    </select>
+</mapper>
