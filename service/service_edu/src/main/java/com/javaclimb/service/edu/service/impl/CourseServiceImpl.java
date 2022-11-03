@@ -209,21 +209,3 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return baseMapper.selectList(queryWrapper);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
