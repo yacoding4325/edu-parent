@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaclimb.service.edu.entity.vo.TeacherQueryVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,5 +29,10 @@ public interface TeacherService extends IService<Teacher> {
      * @return
      */
     List<Teacher> selectHotTeacher();
+
+    /**
+     * 前台讲师分页查询
+     */
+    public Map<String,Object> pageListWeb(Page<Teacher> pageParam);
 
 }

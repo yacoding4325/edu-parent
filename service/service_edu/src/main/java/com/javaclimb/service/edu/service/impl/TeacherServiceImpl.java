@@ -12,7 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -74,5 +76,27 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         queryWrapper.orderByDesc("sort");
         queryWrapper.last("limit 4");
         return baseMapper.selectList(queryWrapper);
+    }
+
+    /**
+     * 前台讲师分页查询
+     * @param pageParam
+     * @return
+     */
+    @Override
+    public Map<String, Object> pageListWeb(Page<Teacher> pageParam) {
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("sort");
+        baseMapper.selectPage(pageParam,queryWrapper);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("items",pageParam.getRecords());    //当前页的记录
+        map.put("current",pageParam.getCurrent());    //当前页
+        map.put("pages",pageParam.getPages());      //共有多少页
+        map.put("size",pageParam.getSize());        //每页记录数
+        map.put("total",pageParam.getTotal());      //总共记录数
+        map.put("hasNext",pageParam.hasNext());     //是否有下一页
+        map.put("hasPrevious",pageParam.hasPrevious());//是否有上一页
+        return map;
     }
 }
