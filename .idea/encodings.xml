@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/service/service_cms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_edu/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_oss/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/service_ucenter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_vod/src/main/java" charset="UTF-8" />
   </component>
 </project>

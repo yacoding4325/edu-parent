@@ -1,0 +1,65 @@
+server:
+  port: 9160
+
+spring:
+  profiles:
+    # 环境设置
+    active: dev
+
+  application:
+    # 服务名
+    name: service-ucenter
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/javaclimb_ucenter?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: yxym
+
+  redis: # redis 配置
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password:  #默认为空
+    lettuce:
+      pool:
+        max-active: 20  #最大连接数，负值表示没有限制，默认8
+        max-wait: -1    #最大阻塞等待时间，负值表示没限制，默认-1
+        max-idle: 8     #最大空闲连接，默认8
+        min-idle: 0     #最小空闲连接，默认0
+
+  # 响应 json 的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# mybatis 日志设置
+mybatis-plus:
+  configuration:
+    # 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:/mapper/*.xml
+
+#开启熔断机制
+feign:
+  hystrix:
+    enabled: true
+#设置hystrix超时时间，默认1000ms
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+
+
+# 设置日志级别
+#logging:
+#  level:
+
+#    root: INFO
