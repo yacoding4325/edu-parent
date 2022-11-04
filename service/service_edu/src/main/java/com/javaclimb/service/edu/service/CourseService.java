@@ -62,4 +62,11 @@ public interface CourseService extends IService<Course> {
      * 获取热门课程
      */
     List<Course> selectHotCourse();
+
+    /**
+     * 根据讲师id查询他所讲的所有课程
+     * @param teacherId
+     * @return
+     */
+    List<Course> selectByTeacherId(String teacherId);
 }

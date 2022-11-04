@@ -208,4 +208,19 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         queryWrapper.last("limit 8");
         return baseMapper.selectList(queryWrapper);
     }
+
+    /**
+     * 根据讲师id查询他所讲的所有课程
+     * @param teacherId
+     * @return
+     */
+    @Override
+    public List<Course> selectByTeacherId(String teacherId) {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teacher_id",teacherId);
+        //按更新时间倒序排序
+        queryWrapper.orderByDesc("gmt_modified");
+        List<Course> list = baseMapper.selectList(queryWrapper);
+        return list;
+    }
 }
