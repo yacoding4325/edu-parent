@@ -85,4 +85,10 @@ public interface CourseService extends IService<Course> {
      */
     CourseWebVo selectInfoWebById(String id);
 
+    /**
+     * 更新课程浏览数
+     * @param id
+     */
+   void updatePageViewCount(String id);
+
 }

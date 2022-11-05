@@ -24,4 +24,23 @@
         ${ew.customSqlSegment}
     </select>
 
+    <select id="selectInfoWebById" resultType="com.javaclimb.service.edu.entity.vo.CourseWebVo">
+        select c.id,c.title,c.cover,c.lesson_num as lessonNum,c.price,
+        buy_count as buyCount,view_count as viewCount,
+        s1.id as subjectLevelOneId,s1.title as subjectLevelOne,
+        s2.id as subjectLevelTwoId,s2.title as subjectLevelTwo,
+        t.id as teacherId,
+        t.name as teacherName,
+        t.intro as intro,
+        t.avatar as avatar,
+        cd.description
+        from
+        edu_course c
+        LEFT JOIN edu_subject s1 ON c.subject_parent_id = s1.id
+        LEFT JOIN edu_subject s2 ON c.subject_id = s2.id
+        LEFT JOIN edu_teacher t ON c.teacher_id = t.id
+        LEFT JOIN edu_course_description cd ON c.id = cd.id
+        where c.id=#{id}
+    </select>
+
 </mapper>

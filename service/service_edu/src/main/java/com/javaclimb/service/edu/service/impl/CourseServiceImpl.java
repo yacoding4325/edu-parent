@@ -280,7 +280,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
      *
      * @param id
      */
-    private void updatePageViewCount(String id) {
+    public void updatePageViewCount(String id) {
         Course course = baseMapper.selectById(id);
         course.setViewCount(course.getViewCount() + 1);
         baseMapper.updateById(course);
