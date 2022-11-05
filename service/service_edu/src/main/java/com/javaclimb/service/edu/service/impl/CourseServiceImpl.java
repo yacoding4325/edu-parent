@@ -11,6 +11,7 @@ import com.javaclimb.service.edu.entity.form.CourseInfoForm;
 import com.javaclimb.service.edu.entity.vo.CoursePublishVo;
 import com.javaclimb.service.edu.entity.vo.CourseQueryVo;
 import com.javaclimb.service.edu.entity.vo.CourseVo;
+import com.javaclimb.service.edu.entity.vo.CourseWebVo;
 import com.javaclimb.service.edu.mapper.ChapterMapper;
 import com.javaclimb.service.edu.mapper.CourseDescriptionMapper;
 import com.javaclimb.service.edu.mapper.CourseMapper;
@@ -26,7 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.management.Query;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -222,5 +225,64 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         queryWrapper.orderByDesc("gmt_modified");
         List<Course> list = baseMapper.selectList(queryWrapper);
         return list;
+    }
+
+    /**
+     * 前台课程列表分页查询
+     * @param pageParam
+     * @param courseQueryVo
+     * @return
+     */
+    @Override
+    public Map<String, Object> pageListWeb(Page<Course> pageParam, CourseQueryVo courseQueryVo) {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        if(!StringUtils.isEmpty(courseQueryVo.getSubjectParentId())){
+            queryWrapper.eq("subject_parent_id",courseQueryVo.getSubjectParentId());
+        }
+        if(!StringUtils.isEmpty(courseQueryVo.getSubjectId())){
+            queryWrapper.eq("subject_id",courseQueryVo.getSubjectId());
+        }
+        if(!StringUtils.isEmpty(courseQueryVo.getBuyCountSort())){
+            queryWrapper.orderByDesc("buy_count");
+        }
+        if(!StringUtils.isEmpty(courseQueryVo.getGmtCreateSort())){
+            queryWrapper.orderByDesc("gmt_create");
+        }
+        if(!StringUtils.isEmpty(courseQueryVo.getPriceSort())){
+            queryWrapper.orderByDesc("price");
+        }
+        baseMapper.selectPage(pageParam,queryWrapper);
+        Map<String,Object> map = new HashMap<>();
+        map.put("items",pageParam.getRecords());    //当前页的记录
+        map.put("current",pageParam.getCurrent());    //当前页
+        map.put("pages",pageParam.getPages());      //共有多少页
+        map.put("size",pageParam.getSize());        //每页记录数
+        map.put("total",pageParam.getTotal());      //总共记录数
+        map.put("hasNext",pageParam.hasNext());     //是否有下一页
+        map.put("hasPrevious",pageParam.hasPrevious());//是否有上一页
+        return map;
+    }
+
+    /**
+     *  根据课程id获取网站前台课程详情所需要的字段
+     * @param id
+     * @return
+     */
+    @Override
+    public CourseWebVo selectInfoWebById(String id) {
+        updatePageViewCount(id);
+        return baseMapper.selectInfoWebById(id);
+
+    }
+
+    /**
+     * 更新课程浏览数
+     *
+     * @param id
+     */
+    private void updatePageViewCount(String id) {
+        Course course = baseMapper.selectById(id);
+        course.setViewCount(course.getViewCount() + 1);
+        baseMapper.updateById(course);
     }
 }

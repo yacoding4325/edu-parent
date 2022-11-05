@@ -7,6 +7,7 @@ import com.javaclimb.service.edu.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.javaclimb.service.edu.entity.vo.CoursePublishVo;
 import com.javaclimb.service.edu.entity.vo.CourseVo;
+import com.javaclimb.service.edu.entity.vo.CourseWebVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -32,4 +33,11 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @return
      */
     List<CourseVo> selectPageByCourseQueryVo(Page<CourseVo> pageParam, @Param(Constants.WRAPPER)QueryWrapper<CourseVo> queryWrapper);
+
+    /**
+     * 根据课程id获取网站前台课程详情所需要的字段
+     * @param id
+     * @return
+     */
+    CourseWebVo selectInfoWebById(String id);
 }
