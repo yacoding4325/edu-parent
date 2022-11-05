@@ -19,6 +19,7 @@ import com.javaclimb.service.edu.mapper.VideoMapper;
 import com.javaclimb.service.edu.service.CourseDescriptionService;
 import com.javaclimb.service.edu.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.javaclimb.service.edu.service.VideoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.Cacheable;
@@ -51,6 +52,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Resource
     private CourseDescriptionMapper courseDescriptionMapper;
+
+    @Resource
+    private VideoService videoService;
 
     /**
      * 保存课程基本信息
@@ -186,10 +190,21 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeCourseById(String id) {
-        //根据courseId删除video（课时）
-        QueryWrapper<Video> videoQueryWrapper = new QueryWrapper<>();
-        videoQueryWrapper.eq("course_id",id);
-        videoMapper.delete(videoQueryWrapper);
+//        //根据courseId删除video（课时）
+//        QueryWrapper<Video> videoQueryWrapper = new QueryWrapper<>();
+//        videoQueryWrapper.eq("course_id",id);
+//        videoMapper.delete(videoQueryWrapper);
+//        //删除chapter（章节）
+//        QueryWrapper<Chapter> chapterQueryWrapper = new QueryWrapper<>();
+//        chapterQueryWrapper.eq("course_id",id);
+//        chapterMapper.delete(chapterQueryWrapper);
+//        //删除description(课程详情)
+//        courseDescriptionMapper.deleteById(id);
+//        //最后删除课程
+//        return this.removeById(id);
+
+        //根据课程主键删除所有它下面的云端视频和课时
+        videoService.removeByCourseId(id);
         //删除chapter（章节）
         QueryWrapper<Chapter> chapterQueryWrapper = new QueryWrapper<>();
         chapterQueryWrapper.eq("course_id",id);
