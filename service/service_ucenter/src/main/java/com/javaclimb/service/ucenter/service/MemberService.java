@@ -6,6 +6,7 @@ package com.javaclimb.service.ucenter.service;
  */
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.javaclimb.service.base.dto.MemberDto;
 import com.javaclimb.service.ucenter.entity.Member;
 import com.javaclimb.service.ucenter.entity.vo.LoginVo;
 import com.javaclimb.service.ucenter.entity.vo.RegisterVo;
@@ -31,5 +32,10 @@ public interface MemberService extends IService<Member> {
      * @return
      */
     Integer selectRegisterNumber(String day);
+
+    /**
+     * 根据会员id查询会员信息
+     */
+    MemberDto getMemberDtoByMemberId(String memberId);
 
 }

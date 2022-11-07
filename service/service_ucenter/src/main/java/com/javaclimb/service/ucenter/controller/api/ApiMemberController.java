@@ -5,6 +5,7 @@ package com.javaclimb.service.ucenter.controller.api;
  * @create 2022-11-04 下午 12:57
  */
 
+import com.javaclimb.service.base.dto.MemberDto;
 import com.javaclimb.service.base.exception.JavaclimbException;
 import com.javaclimb.service.base.result.R;
 import com.javaclimb.service.base.result.ResultCodeEnum;
@@ -15,6 +16,7 @@ import com.javaclimb.service.ucenter.entity.vo.RegisterVo;
 import com.javaclimb.service.ucenter.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,6 +60,13 @@ public class ApiMemberController {
             log.error("解析用户信息失败，"+e.getMessage());
             throw new JavaclimbException(ResultCodeEnum.FETCH_USERINFO_ERROR);
         }
+    }
+
+    @ApiOperation("根据会员id获取会员信息")
+    @GetMapping("inner/get-member-dto/{memberId}")
+    public MemberDto getMemberDtoByMemberId(@ApiParam(value = "会员id",required = true)@PathVariable String memberId){
+        MemberDto memberDto = memberService.getMemberDtoByMemberId(memberId);
+        return memberDto;
     }
 
 }

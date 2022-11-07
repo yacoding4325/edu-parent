@@ -2,6 +2,7 @@ package com.javaclimb.service.ucenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.javaclimb.service.base.dto.MemberDto;
 import com.javaclimb.service.base.exception.JavaclimbException;
 import com.javaclimb.service.base.result.ResultCodeEnum;
 import com.javaclimb.service.base.utils.FormUtils;
@@ -14,6 +15,7 @@ import com.javaclimb.service.ucenter.entity.vo.RegisterVo;
 import com.javaclimb.service.ucenter.mapper.MemberMapper;
 import com.javaclimb.service.ucenter.service.MemberService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -109,5 +111,13 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     @Override
     public Integer selectRegisterNumber(String day) {
         return baseMapper.selectRegisterNumber(day);
+    }
+
+    @Override
+    public MemberDto getMemberDtoByMemberId(String memberId) {
+        Member member = baseMapper.selectById(memberId);
+        MemberDto memberDto = new MemberDto();
+        BeanUtils.copyProperties(member,memberDto);
+        return memberDto;
     }
 }
