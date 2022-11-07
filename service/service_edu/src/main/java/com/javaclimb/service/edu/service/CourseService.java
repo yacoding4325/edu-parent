@@ -97,4 +97,8 @@ public interface CourseService extends IService<Course> {
      */
     CourseDto selectCourseDtoById(String id);
 
+    /**
+     * 根据课程id更新销量
+     */
+    void updateBuyCountById(String id);
 }

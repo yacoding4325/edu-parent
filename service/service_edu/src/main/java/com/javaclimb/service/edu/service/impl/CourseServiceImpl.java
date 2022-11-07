@@ -306,4 +306,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public CourseDto selectCourseDtoById(String id) {
         return baseMapper.selectCourseDtoById(id);
     }
+
+    @Override
+    public void updateBuyCountById(String id) {
+        Course course = baseMapper.selectById(id);
+        course.setBuyCount(course.getBuyCount());
+        baseMapper.updateById(course);
+    }
 }
