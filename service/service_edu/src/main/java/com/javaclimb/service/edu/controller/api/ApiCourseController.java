@@ -8,6 +8,9 @@ package com.javaclimb.service.edu.controller.api;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.javaclimb.service.base.dto.CourseDto;
 import com.javaclimb.service.base.result.R;
+import com.javaclimb.service.base.utils.JwtInfo;
+import com.javaclimb.service.base.utils.JwtUtils;
+import com.javaclimb.service.edu.client.OrderClient;
 import com.javaclimb.service.edu.entity.Course;
 import com.javaclimb.service.edu.entity.vo.ChapterVo;
 import com.javaclimb.service.edu.entity.vo.CourseQueryVo;
@@ -21,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +44,9 @@ public class ApiCourseController {
     @Resource
     private ChapterService chapterService;
 
+    @Resource
+    private OrderClient orderClient;
+
     @ApiOperation("分页课程列表")
     @PostMapping(value = "list/{page}/{limit}")
     public R pageList(@ApiParam(name="page",value = "当前页码",required = true)@PathVariable Long page,
@@ -50,14 +57,27 @@ public class ApiCourseController {
         return R.ok().data(map);
     }
 
+//    @ApiOperation("根据课程id查询课程详情")
+//    @GetMapping(value = "getById/{courseId}")
+//    public R getById(@ApiParam(name="courseId",value = "课程id",required = true)@PathVariable String courseId) {
+//        //根据课程id获取网站前台课程 详情所需的 字段
+//        CourseWebVo courseWebVo =  courseService.selectInfoWebById(courseId);
+//        //查询当前课程的章节信息
+//        List<ChapterVo> chapterVoList = chapterService.nestedList(courseId);
+//        return R.ok().data("course",courseWebVo).data("chapterVoList",chapterVoList);
+//    }
+
     @ApiOperation("根据课程id查询课程详情")
     @GetMapping(value = "getById/{courseId}")
-    public R getById(@ApiParam(name="courseId",value = "课程id",required = true)@PathVariable String courseId) {
-        //根据课程id获取网站前台课程 详情所需的 字段
+    public R getById(@ApiParam(name="courseId",value = "课程id",required = true)@PathVariable String courseId, HttpServletRequest request){
+        //根据课程id获取网站前台课程详情所需要的字段
         CourseWebVo courseWebVo =  courseService.selectInfoWebById(courseId);
         //查询当前课程的章节信息
         List<ChapterVo> chapterVoList = chapterService.nestedList(courseId);
-        return R.ok().data("course",courseWebVo).data("chapterVoList",chapterVoList);
+        //远程调用，判断用户是否购买了该课程
+        JwtInfo jwtInfo = JwtUtils.getMemberIdByJwtToken(request);
+        boolean isbuy = orderClient.isBuyCourse(jwtInfo.getId(),courseId);
+        return R.ok().data("course",courseWebVo).data("chapterVoList",chapterVoList).data("isbuy",isbuy);
     }
 
     @ApiOperation("根据课程id查询课程信息，给订单调用")
@@ -66,5 +86,7 @@ public class ApiCourseController {
         CourseDto courseDto =  courseService.selectCourseDtoById(courseId);
         return courseDto;
     }
+
+
 
 }
