@@ -2,6 +2,7 @@ package com.javaclimb.service.edu.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaclimb.service.base.dto.CourseDto;
 import com.javaclimb.service.edu.entity.Course;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaclimb.service.edu.entity.form.CourseInfoForm;
@@ -90,5 +91,10 @@ public interface CourseService extends IService<Course> {
      * @param id
      */
    void updatePageViewCount(String id);
+
+    /**
+     * 根据课程id查询订单相关的课程信息
+     */
+    CourseDto selectCourseDtoById(String id);
 
 }

@@ -3,6 +3,7 @@ package com.javaclimb.service.edu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaclimb.service.base.dto.CourseDto;
 import com.javaclimb.service.edu.entity.Chapter;
 import com.javaclimb.service.edu.entity.Course;
 import com.javaclimb.service.edu.entity.CourseDescription;
@@ -299,5 +300,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         Course course = baseMapper.selectById(id);
         course.setViewCount(course.getViewCount() + 1);
         baseMapper.updateById(course);
+    }
+
+    @Override
+    public CourseDto selectCourseDtoById(String id) {
+        return baseMapper.selectCourseDtoById(id);
     }
 }

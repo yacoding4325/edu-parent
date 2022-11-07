@@ -3,6 +3,7 @@ package com.javaclimb.service.edu.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaclimb.service.base.dto.CourseDto;
 import com.javaclimb.service.edu.entity.Course;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.javaclimb.service.edu.entity.vo.CoursePublishVo;
@@ -40,4 +41,9 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @return
      */
     CourseWebVo selectInfoWebById(String id);
+
+    /**
+     * 根据课程id查询订单相关的课程信息
+     */
+    CourseDto selectCourseDtoById(String id);
 }

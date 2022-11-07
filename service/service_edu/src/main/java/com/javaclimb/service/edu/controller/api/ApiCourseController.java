@@ -6,6 +6,7 @@ package com.javaclimb.service.edu.controller.api;
  */
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.javaclimb.service.base.dto.CourseDto;
 import com.javaclimb.service.base.result.R;
 import com.javaclimb.service.edu.entity.Course;
 import com.javaclimb.service.edu.entity.vo.ChapterVo;
@@ -57,6 +58,13 @@ public class ApiCourseController {
         //查询当前课程的章节信息
         List<ChapterVo> chapterVoList = chapterService.nestedList(courseId);
         return R.ok().data("course",courseWebVo).data("chapterVoList",chapterVoList);
+    }
+
+    @ApiOperation("根据课程id查询课程信息，给订单调用")
+    @GetMapping(value = "inner/get-course-dto/{courseId}")
+    public CourseDto selectCourseDtoById(@ApiParam(name="courseId",value = "课程id",required = true)@PathVariable String courseId){
+        CourseDto courseDto =  courseService.selectCourseDtoById(courseId);
+        return courseDto;
     }
 
 }

@@ -25,4 +25,11 @@ public interface MemberService extends IService<Member> {
      */
     String login(LoginVo loginVo);
 
+    /**
+     *根据日期查询注册人数
+     * @param day
+     * @return
+     */
+    Integer selectRegisterNumber(String day);
+
 }

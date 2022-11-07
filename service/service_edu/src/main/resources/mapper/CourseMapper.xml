@@ -42,5 +42,13 @@
         LEFT JOIN edu_course_description cd ON c.id = cd.id
         where c.id=#{id}
     </select>
+    <select id="selectCourseDtoById" resultType="com.javaclimb.service.base.dto.CourseDto">
+        select c.id,c.title,c.cover,c.price,
+        t.name as teacherName
+        from
+        edu_course c
+        LEFT JOIN edu_teacher t ON c.teacher_id = t.id
+        where c.id=#{id}
+    </select>
 
 </mapper>

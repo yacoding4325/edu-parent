@@ -13,4 +13,9 @@ import com.javaclimb.service.ucenter.entity.Member;
  */
 
 public interface MemberMapper extends BaseMapper<Member> {
+
+    /**
+     * 根据日期查询注册人数
+     */
+    Integer selectRegisterNumber(String day);
 }

@@ -17,6 +17,8 @@
         <module>service_vod</module>
         <module>service_cms</module>
         <module>service_ucenter</module>
+        <module>service_statistics</module>
+        <module>service_trade</module>
     </modules>
 
     <properties>

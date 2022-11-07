@@ -9,9 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common_util" />
         <module name="service_oss" />
+        <module name="service_statistics" />
         <module name="service_vod" />
         <module name="service_base" />
         <module name="service_edu" />
+        <module name="service_trade" />
         <module name="service_cms" />
         <module name="service_ucenter" />
       </profile>
@@ -27,6 +29,8 @@
       <module name="service_cms" options="-parameters" />
       <module name="service_edu" options="-parameters" />
       <module name="service_oss" options="-parameters" />
+      <module name="service_statistics" options="-parameters" />
+      <module name="service_trade" options="-parameters" />
       <module name="service_ucenter" options="-parameters" />
       <module name="service_vod" options="-parameters" />
     </option>
