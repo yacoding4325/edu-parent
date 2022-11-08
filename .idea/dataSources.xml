@@ -36,5 +36,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/javaclimb_trade</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="javaclimb_acl@localhost" uuid="0fe4b426-f897-460c-a6b1-f73fe39c48d9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/javaclimb_acl</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
