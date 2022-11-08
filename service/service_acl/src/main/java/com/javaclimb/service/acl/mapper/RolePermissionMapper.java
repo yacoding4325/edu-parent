@@ -9,5 +9,4 @@ import com.javaclimb.service.acl.entity.RolePermission;
  */
 
 public interface RolePermissionMapper extends BaseMapper<RolePermission> {
-
 }

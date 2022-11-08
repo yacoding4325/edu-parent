@@ -1,13 +1,13 @@
 package com.javaclimb.service.acl.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.javaclimb.service.acl.entity.RolePermission;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * @Author yaCoding
- * @create 2022-11-08 下午 5:02
+ * <p>
+ * 角色权限 服务类
+ * </p>
  */
-//角色权限 服务类
 public interface RolePermissionService extends IService<RolePermission> {
 
 }
