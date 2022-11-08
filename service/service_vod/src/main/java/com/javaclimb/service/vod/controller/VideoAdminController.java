@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping("admin/vod/media")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class VideoAdminController {
 
     @Autowired

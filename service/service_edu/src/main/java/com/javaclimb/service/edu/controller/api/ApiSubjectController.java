@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/edu/subject")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiSubjectController {
 
     @Resource

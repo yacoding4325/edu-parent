@@ -22,7 +22,7 @@ import java.util.List;
  * 课程 前端控制器
  * </p>
  */
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin/edu/course")
 @Api(description = "课程管理")

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/api/trade/order")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiOrderController {
 
     @Resource

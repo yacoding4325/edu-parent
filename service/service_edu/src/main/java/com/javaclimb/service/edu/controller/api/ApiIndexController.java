@@ -28,7 +28,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/edu/index")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiIndexController {
 
     @Resource

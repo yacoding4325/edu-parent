@@ -8,7 +8,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/edu/user")
-@CrossOrigin
+//@CrossOrigin
 public class LoginController {
 
     /**

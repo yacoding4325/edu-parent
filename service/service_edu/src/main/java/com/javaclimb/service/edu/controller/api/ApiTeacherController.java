@@ -28,7 +28,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/edu/teacher")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiTeacherController {
 
     @Resource

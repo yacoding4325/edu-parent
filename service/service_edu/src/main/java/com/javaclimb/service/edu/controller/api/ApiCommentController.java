@@ -26,7 +26,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/edu/comment")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiCommentController {
 
     @Autowired

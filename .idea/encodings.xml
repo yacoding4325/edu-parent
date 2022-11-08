@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/common/common_util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common_util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/service_base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/infrastructure/api_gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_cms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_edu/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_oss/src/main/java" charset="UTF-8" />

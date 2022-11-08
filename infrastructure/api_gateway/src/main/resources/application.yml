@@ -1,0 +1,58 @@
+server:
+  port: 8090
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: infrastructure-apigateway
+
+  cloud:
+    # nacos 服务
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          # gateway 可以发现 nacos 中的微服务
+          enabled: true
+      routes:
+        - id: service-edu # 随便起
+          # uri: http://localhost:9110 # 目标路由
+          # 目标路由,必须和 nacos 中微服务名称一样, lb -> 以负载均衡的方式访问
+          uri: lb://service-edu
+          predicates:
+            # 路径断言,只要这个条件成立,就转发到上面的地址
+            - Path=/user/**, /*/edu/**
+        - id: service-cms
+          uri: lb://service-cms
+          predicates:
+            - Path=/*/cms/**
+          # 过滤器
+          filters:
+            - SetStatus=250 # 修改响应状态码为 250
+        - id: service-oss
+          uri: lb://service-oss
+          predicates:
+            - Path=/*/oss/**
+        - id: service-trade
+          uri: lb://service-trade
+          predicates:
+            - Path=/*/trade/**
+        - id: service-ucenter
+          uri: lb://service-ucenter
+          predicates:
+            - Path=/*/ucenter/**
+        - id: service-vod
+          uri: lb://service-vod
+          predicates:
+            - Path=/*/vod/**
+        - id: service-statistics
+          uri: lb://service-statistics
+          predicates:
+            - Path=/*/statistics/**
+        - id: service-acl
+          uri: lb://service-acl
+          predicates:
+            - Path=/*/acl/**

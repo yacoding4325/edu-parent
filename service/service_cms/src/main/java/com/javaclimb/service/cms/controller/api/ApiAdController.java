@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cms/ad")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiAdController {
 
     @Resource

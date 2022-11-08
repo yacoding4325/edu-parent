@@ -27,7 +27,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/cms/ad-type")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class AdTypeController {
 
     @Autowired

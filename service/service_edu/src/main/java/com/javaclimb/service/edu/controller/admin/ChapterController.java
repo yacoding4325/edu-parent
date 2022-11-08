@@ -19,7 +19,7 @@ import java.util.List;
  * </p>
  */
 @Api(description = "章节管理")
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin/edu/chapter")
 public class ChapterController {

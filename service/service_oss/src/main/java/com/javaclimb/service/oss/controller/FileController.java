@@ -28,7 +28,7 @@ import java.io.InputStream;
 @RestController
 @RequestMapping("admin/oss/file")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class FileController {
 
     @Resource

@@ -16,14 +16,17 @@
         <module name="service_trade" />
         <module name="service_cms" />
         <module name="service_ucenter" />
+        <module name="api_gateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api_gateway" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="common_util" options="-parameters" />
       <module name="edu-parent" options="-parameters" />
+      <module name="infrastructure" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="service_base" options="-parameters" />
       <module name="service_cms" options="-parameters" />

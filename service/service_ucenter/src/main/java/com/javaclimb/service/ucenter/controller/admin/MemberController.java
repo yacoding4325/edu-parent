@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin/ucenter/member")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class MemberController {
 
     @Autowired

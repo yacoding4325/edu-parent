@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/edu/subject")
-@CrossOrigin
+//@CrossOrigin
 public class SubjectController {
     @Resource
     private SubjectService subjectService;

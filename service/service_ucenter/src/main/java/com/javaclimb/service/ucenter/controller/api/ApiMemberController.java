@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/api/ucenter/member")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class ApiMemberController {
 
     @Resource
