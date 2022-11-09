@@ -15,7 +15,7 @@ import java.util.Map;
 public interface RoleService extends IService<Role> {
 
     /**
-     * 根据用户获取角色
+     * 根据用户获取角色.包含所有权限
      */
     Map<String,Object> findRoleByUserId(String userId);
 
@@ -23,4 +23,11 @@ public interface RoleService extends IService<Role> {
      * 给用户分配角色
      */
     void saveUserRoleRelationShip(String userId, String[] roleIds);
+
+    /**
+     * 根据用户获取角色
+     * @param userId
+     * @return
+     */
+    List<Role> selectRoleByUserId(String userId);
 }

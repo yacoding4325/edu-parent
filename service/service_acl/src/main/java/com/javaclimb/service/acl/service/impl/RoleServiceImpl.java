@@ -71,5 +71,20 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         //把角色权限列表批量保存到数据库
         userRoleService.saveBatch(userRoleList);
     }
+
+    //根据用户获取角色
+    @Override
+    public List<Role> selectRoleByUserId(String userId) {
+        //根据用户id获取到角色列表
+        List<UserRole> userRoleList = userRoleService.list(new QueryWrapper<UserRole>().eq("user_id",userId).select("role_id"));
+        //遍历角色列表，只取roleId后放到新的list里面
+        List<String> roleIdList = userRoleList.stream().map(c -> c.getRoleId()).collect(Collectors.toList());
+        //获取到该用户的所有角色对象，放到list
+        List<Role> roleList = new ArrayList<>();
+        if (roleIdList.size() > 0) {
+            roleList = baseMapper.selectBatchIds(roleIdList);
+        }
+        return roleList;
+    }
 }
 
