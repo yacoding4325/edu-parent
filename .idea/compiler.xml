@@ -12,6 +12,7 @@
         <module name="service_statistics" />
         <module name="service_acl" />
         <module name="service_vod" />
+        <module name="spring_security" />
         <module name="service_base" />
         <module name="service_edu" />
         <module name="service_trade" />
@@ -38,6 +39,7 @@
       <module name="service_trade" options="-parameters" />
       <module name="service_ucenter" options="-parameters" />
       <module name="service_vod" options="-parameters" />
+      <module name="spring_security" options="-parameters" />
     </option>
   </component>
 </project>
