@@ -31,4 +31,11 @@ public interface PermissionService extends IService<Permission> {
      * 给角色分配菜单权限
      */
     void saveRolePermissionRelationShip(String roleId,String[] permissionIds);
+
+    /**
+     * 根据角色分配菜单权限
+     * @param userId
+     * @return
+     */
+    List<String> selectPermissionValueByUserId(String userId);
 }

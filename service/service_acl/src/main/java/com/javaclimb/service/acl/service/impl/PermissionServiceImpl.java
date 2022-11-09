@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaclimb.service.acl.entity.Permission;
 import com.javaclimb.service.acl.entity.RolePermission;
+import com.javaclimb.service.acl.entity.User;
 import com.javaclimb.service.acl.mapper.PermissionMapper;
 import com.javaclimb.service.acl.service.PermissionService;
 import com.javaclimb.service.acl.service.RolePermissionService;
+import com.javaclimb.service.acl.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 
     @Autowired
     private RolePermissionService rolePermissionService;
+
+    @Autowired
+    private UserService userService;
     /**
      * 查询菜单实现类
      * @return
@@ -146,5 +151,29 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         }
         //把角色 权限 列表批量保存到数据库
         rolePermissionService.saveBatch(rolePermissionList);
+    }
+
+    /**根据用户ID查询有权限的菜单*/
+    @Override
+    public List<String> selectPermissionValueByUserId(String userId) {
+        List<String> list ;
+        //管理员有所有菜单权限
+        if (isSysAdmin(userId)) {
+            list = baseMapper.selectAllPermissionValue();
+        } else {//根据用户id查询有权限的菜单
+            list = baseMapper.selectPermissionValueByUserId(userId);
+        }
+        return list;
+    }
+
+    /**
+     * 判断用户是否是系统管理员
+     */
+    public boolean isSysAdmin(String userId) {
+        User user = userService.getById(userId);
+        if (user!=null && "admin".equals(user.getUsername())){
+            return true;
+        }
+        return false;
     }
 }
