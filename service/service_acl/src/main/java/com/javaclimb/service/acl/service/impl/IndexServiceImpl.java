@@ -1,5 +1,6 @@
 package com.javaclimb.service.acl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.javaclimb.service.acl.entity.Role;
 import com.javaclimb.service.acl.entity.User;
 import com.javaclimb.service.acl.service.IndexService;
@@ -59,5 +60,17 @@ public class IndexServiceImpl implements IndexService {
         result.put("roles",roleNameList);
         result.put("permissionValueList",permissionValueList);
         return result;
+    }
+
+    //根据用户名 获取动态菜单
+    @Override
+    public List<JSONObject> getMenu(String username) {
+        User user = userService.selectByUsername(username);
+        if (user == null) {
+            throw new JavaclimbException(ResultCodeEnum.FETCH_USERINFO_ERROR);
+        }
+        //根据用户id 获取菜单权限
+        List<JSONObject> permissionList = permissionService.selectPermissionByUserId(user.getId());
+        return permissionList;
     }
 }

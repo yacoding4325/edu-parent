@@ -1,5 +1,6 @@
 package com.javaclimb.service.acl.controller.admin;
 
+import com.alibaba.fastjson.JSONObject;
 import com.javaclimb.service.acl.service.IndexService;
 import com.javaclimb.service.base.result.R;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +38,9 @@ public class IndexController {
      */
     @GetMapping("menu")
     public R getMenu() {
-        return R.ok();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<JSONObject> permissionList = indexService.getMenu(username);
+        return R.ok().data("permissionList",permissionList);
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.javaclimb.service.acl.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaclimb.service.acl.entity.Permission;
@@ -122,6 +123,9 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             //比较当前id和遍历出来的菜单pid是否相同
             if(permissionNode.getId().equals(it.getPid())){
                 it.setLevel(permissionNode.getLevel() + 1);
+                 if (permissionNode.getChildren() == null) {
+                     permissionNode.setChildren(new ArrayList<>());
+                 }
                 //把查询出来的子菜单放到父菜单里面
                 permissionNode.getChildren().add(selectChildren(it, list) );
             }
@@ -164,6 +168,83 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             list = baseMapper.selectPermissionValueByUserId(userId);
         }
         return list;
+    }
+
+    //根据用户id查询有权限的菜单 详情列表
+    @Override
+    public List<JSONObject> selectPermissionByUserId(String userId) {
+        List<Permission> selectPermissionList = null;
+        if (isSysAdmin(userId)) {   //管理员有所有菜单权限
+            selectPermissionList = baseMapper.selectList(null);
+        } else {                    //根据用户id查询有权限的菜单
+            selectPermissionList = baseMapper.selectPermissionByUserId(userId);
+        }
+        //先转换成树状
+        List<Permission> permissionList = buildPermission(selectPermissionList);
+        //然后转换成前端需要的格式
+        List<JSONObject> result = buildJson(permissionList);
+        return result;
+    }
+
+    /**
+     * 构建用户是否系统  管理员
+     */
+    private List<JSONObject> buildJson(List<Permission> treeNodes) {
+        List<JSONObject> menus = new ArrayList<>();
+        if (treeNodes.size() == 1) {
+            Permission topNode = treeNodes.get(0);
+            //左侧一级菜单
+            List<Permission> oneMenuList = topNode.getChildren();
+            for (Permission one: oneMenuList) {
+                JSONObject oneMenu = new JSONObject();
+                oneMenu.put("path",one.getPath());
+                oneMenu.put("component",one.getComponent());
+                oneMenu.put("redirect","noredirect");
+                oneMenu.put("name","name_" + one.getId());
+                oneMenu.put("hidden",false);
+                JSONObject oneMeta = new JSONObject();
+                oneMeta.put("title",one.getName());
+                oneMeta.put("icon",one.getIcon());
+                oneMenu.put("meta",oneMeta);
+
+                List<JSONObject> children = new ArrayList<>();
+                //左侧二级菜单
+                List<Permission> twoMenuList = one.getChildren();
+                for (Permission two: twoMenuList) {
+                    JSONObject twoMenu = new JSONObject();
+                    twoMenu.put("path",two.getPath());
+                    twoMenu.put("component",two.getComponent());
+                    twoMenu.put("name","name_" + two.getId());
+                    twoMenu.put("hidden",false);
+                    JSONObject twoMeta = new JSONObject();
+                    oneMeta.put("title",two.getName());
+                    twoMenu.put("icon",two.getIcon());
+                    twoMenu.put("meta",twoMeta);
+                    children.add(twoMenu);
+                    menus.add(oneMenu);
+
+                    //功能按钮
+                    List<Permission> threeMenuList = two.getChildren();
+                    for (Permission three: threeMenuList) {
+                        if (StringUtils.isEmpty(three.getPath())) {
+                            continue;
+                        }
+                        JSONObject threeMenu = new JSONObject();
+                        threeMenu.put("path",three.getPath());
+                        threeMenu.put("component",three.getComponent());
+                        threeMenu.put("name","name_" + three.getId());
+                        threeMenu.put("hidden",true);
+                        JSONObject threeMeta = new JSONObject();
+                        threeMeta.put("title",three.getName());
+                        threeMeta.put("icon",three.getIcon());
+                        threeMenu.put("meta",threeMeta);
+                        children.add(threeMenu);
+                    }
+                }
+                oneMenu.put("children",children);
+            }
+        }
+        return menus;
     }
 
     /**

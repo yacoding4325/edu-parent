@@ -1,5 +1,6 @@
 package com.javaclimb.service.acl.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.javaclimb.service.acl.entity.Permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -38,4 +39,9 @@ public interface PermissionService extends IService<Permission> {
      * @return
      */
     List<String> selectPermissionValueByUserId(String userId);
+
+    /**
+     * 根据用户id查询有权限的菜单 详情列表
+     */
+    List<JSONObject> selectPermissionByUserId(String userId);
 }

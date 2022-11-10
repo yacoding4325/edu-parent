@@ -24,4 +24,9 @@ public interface PermissionMapper extends BaseMapper<Permission> {
      * @return
      */
     List<String> selectPermissionValueByUserId(String userId);
+
+    /**
+     * 根据用户id查询有权限的菜单 详情列表
+     */
+    List<Permission> selectPermissionByUserId(String userId);
 }
