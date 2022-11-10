@@ -11,6 +11,7 @@ import com.javaclimb.service.base.exception.JavaclimbException;
 import com.javaclimb.service.base.result.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
  * @Author yaCoding
  * @create 2022-11-09 下午 9:12
  */
-
+@Service
 public class IndexServiceImpl implements IndexService {
 
     @Autowired

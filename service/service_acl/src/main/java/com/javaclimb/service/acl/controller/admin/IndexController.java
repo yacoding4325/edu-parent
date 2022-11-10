@@ -3,6 +3,7 @@ package com.javaclimb.service.acl.controller.admin;
 import com.alibaba.fastjson.JSONObject;
 import com.javaclimb.service.acl.service.IndexService;
 import com.javaclimb.service.base.result.R;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import java.util.Map;
 @RequestMapping("/admin/acl/index")
 public class IndexController {
 
+    @Autowired
     private IndexService indexService;
 
     /**

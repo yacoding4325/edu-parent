@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.util.StringUtils;
@@ -52,13 +53,15 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         }
         if (authenticationToken == null) {
             ResponseUtil.out(response,R.error());
+        } else {
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
         chain.doFilter(request,response);
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader("token");
-        if (token != null && "".equals((token.trim()))) {
+        if (token != null &&!"".equals((token.trim()))) {
             String userName = tokenManager.getUserFromToken(token);
             List<String> permissionValueList = (List<String>) redisTemplate.opsForValue().get(userName);
             Collection<GrantedAuthority> authorities = new ArrayList<>();
