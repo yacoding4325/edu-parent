@@ -6,6 +6,7 @@ import com.javaclimb.service.acl.entity.User;
 import com.javaclimb.service.acl.service.RoleService;
 import com.javaclimb.service.acl.service.UserService;
 import com.javaclimb.service.base.result.R;
+import com.javaclimb.service.base.utils.MD5;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
@@ -72,6 +73,7 @@ public class UserController {
     @ApiOperation(value = "新增用户")
     @PostMapping("save")
     public R save(@ApiParam("用户对象")@RequestBody User user){
+        user.setPassword(MD5.encrypt(user.getPassword()));
         userService.save(user);
         return R.ok().message("保存成功");
     }
